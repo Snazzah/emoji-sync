@@ -21,8 +21,7 @@ src/
 eslint-results.sarif
 
 # NPM ignore
-.eslintrc.json
-.eslintrc.js
+.eslint.config.mjs
 .eslintignore
 .editorconfig
 .mergify.yml
