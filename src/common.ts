@@ -1,12 +1,19 @@
 import type { Request } from './rest/request';
 import type { FileContent } from './rest/requestHandler';
 
+/** The version of this package. */
 export const VERSION = '0.1.1';
+/** The API version this package supports. */
 export const API_VERSION = 10;
+/** The base API URL to use in requests. */
 export const API_BASE_URL = 'https://discord.com/api/v' + API_VERSION;
+/** The URL for Discord's CDN. */
 export const CDN_URL = 'https://cdn.discordapp.com';
 
-/** @see https://discord.com/developers/docs/resources/user#avatar-decoration-data-object */
+/**
+ * A user's avatar decoration data.
+ * @see https://discord.com/developers/docs/resources/user#avatar-decoration-data-object
+ */
 export interface AvatarDecorationData {
   /** The avatar decoration hash */
   asset: string;
@@ -14,7 +21,10 @@ export interface AvatarDecorationData {
   sku_id: string;
 }
 
-/** @see https://discord.com/developers/docs/resources/user#user-object */
+/**
+ * A user object.
+ * @see https://discord.com/developers/docs/resources/user#user-object
+ */
 export interface User {
   /** The user's id */
   id: string;
@@ -54,6 +64,7 @@ export interface PartialEmoji {
 }
 
 /**
+ * An emoji object.
  * @see https://discord.com/developers/docs/resources/emoji#emoji-object-emoji-structure
  */
 export interface Emoji extends PartialEmoji {

@@ -30,7 +30,7 @@ interface EmojiManagerEvents {
   error: (err: Error) => void;
 }
 
-/** The options for {@link EmojiManager#loadFromFolder} */
+/** The options for {@link EmojiManager.loadFromFolder} */
 export interface LoadFromFolderOptions {
   /** Whether to recursively get files in the folder */
   recursive?: boolean;
@@ -44,7 +44,7 @@ export class EmojiManager<Key extends string = string> extends EventEmitter<Emoj
   applicationId?: string;
   /** The request handler for the manager. */
   readonly requestHandler: RequestHandler;
-  /** Eemojis matched by their key. */
+  /** Emojis matched by their key. */
   readonly emojis: Map<Key, Emoji> = new Map<Key, Emoji>();
   /** The internal list of local emojis matched by their key. */
   #localEmojiMap = new Map<Key, string>();
