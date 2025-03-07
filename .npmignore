@@ -21,11 +21,11 @@ src/
 eslint-results.sarif
 
 # NPM ignore
-.eslint.config.mjs
+.eslint.config.*
 .eslintignore
 .editorconfig
 .mergify.yml
-.prettierrc
+.prettier*
 .gitattributes
 .gitignore
 .github/
