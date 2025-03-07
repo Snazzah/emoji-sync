@@ -1,4 +1,4 @@
-name: ESLint
+name: Lint
 on:
   push:
     branches:
@@ -16,7 +16,7 @@ on:
 
 jobs:
   lint:
-    name: Lint source code
+    name: Lint source code with ESLint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -39,4 +39,27 @@ jobs:
 
       - name: Run ESLint
         run: pnpm run lint
+  jsr-dry-run:
+    name: JSR slow type check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        id: pnpm-install
+        with:
+          run_install: false
+
+      - name: Install Node v18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - run: pnpx jsr publish --dry-run
 
