@@ -34,3 +34,4 @@ eslint-results.sarif
 test/
 testing/
 tsconfig.json
+jsr.json
