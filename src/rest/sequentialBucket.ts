@@ -71,7 +71,7 @@ export class SequentialBucket {
    * The identifier of the bucket.
    * @readonly
    */
-  get id() {
+  get id(): string {
     return `${this.#hash}:${this.#majorParameter}`;
   }
 
@@ -79,7 +79,7 @@ export class SequentialBucket {
    * Whether the bucket is no longer in use.
    * @readonly
    */
-  get inactive() {
+  get inactive(): boolean {
     return !this.limited && !this.#handler.limited && !this.#mutex.locked;
   }
 
@@ -87,7 +87,7 @@ export class SequentialBucket {
    * Whether the bucket is currently limited.
    * @readonly
    */
-  get limited() {
+  get limited(): boolean {
     return this.remaining <= 0 && Date.now() < this.reset;
   }
 

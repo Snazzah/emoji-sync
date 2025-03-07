@@ -5,7 +5,6 @@ import { getFiles, extensionToMimeType, toDataUri, toMarkdown } from './util';
 import { fileURLToPath } from 'node:url';
 import { readFile } from 'node:fs/promises';
 import EventEmitter from 'eventemitter3';
-import { TypedEventEmitter } from './util/typedEmitter';
 
 /** The options for the {@link EmojiManager}. */
 export interface EmojiManagerOptions {
@@ -40,15 +39,13 @@ export interface LoadFromFolderOptions {
 /**
  * A manager for managing an emoji collection.
  */
-export class EmojiManager<
-  Key extends string = string
-> extends (EventEmitter as any as new () => TypedEventEmitter<EmojiManagerEvents>) {
+export class EmojiManager<Key extends string = string> extends EventEmitter<EmojiManagerEvents> {
   /** The application ID of the manager. */
   applicationId?: string;
   /** The request handler for the manager. */
   readonly requestHandler: RequestHandler;
   /** Eemojis matched by their key. */
-  readonly emojis = new Map<Key, Emoji>();
+  readonly emojis: Map<Key, Emoji> = new Map<Key, Emoji>();
   /** The internal list of local emojis matched by their key. */
   #localEmojiMap = new Map<Key, string>();
 
@@ -115,7 +112,7 @@ export class EmojiManager<
    * Load emojis into the manager. The values can either be a data image uri (starting with `data:`), URLs (starting with `http(s):`), or file paths.
    * @param emojis The emojis to load into the manager
    */
-  load(emojis: Record<string, string>) {
+  load(emojis: Record<string, string>): void {
     for (const key in emojis) this.#localEmojiMap.set(key as Key, emojis[key as Key]);
   }
 
@@ -124,7 +121,7 @@ export class EmojiManager<
    * @param folderPath The folder to load emojis from
    * @param options Options for the function
    */
-  async loadFromFolder(folderPath: string, options?: LoadFromFolderOptions) {
+  async loadFromFolder(folderPath: string, options?: LoadFromFolderOptions): Promise<void> {
     const files = await getFiles(folderPath, options?.recursive ?? false);
     for (const file of files) {
       const key = parse(file).name;
@@ -135,7 +132,7 @@ export class EmojiManager<
   /**
    * Syncs the local emojis to the application.
    */
-  async sync() {
+  async sync(): Promise<void> {
     const applicationId = await this.#fetchApplicationId();
     const EMOJIS_ENDPOINT = `/applications/${applicationId}/emojis`;
     const emojis = await this.requestHandler.request<{ items: Emoji[] }>('GET', EMOJIS_ENDPOINT, { auth: true });

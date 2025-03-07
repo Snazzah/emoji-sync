@@ -30,11 +30,11 @@ export class DiscordHTTPError extends Error {
     else Error.captureStackTrace(this, DiscordHTTPError);
   }
 
-  get headers() {
+  get headers(): Headers {
     return this.res.headers;
   }
 
-  get name() {
+  get name(): string {
     return this.constructor.name;
   }
 }

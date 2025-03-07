@@ -52,7 +52,7 @@ export class RequestHandler {
   manager?: EmojiManager;
 
   /** A map with SequentialBuckets. */
-  buckets = new Map<string, SequentialBucket>();
+  buckets: Map<string, SequentialBucket> = new Map<string, SequentialBucket>();
 
   /** Whether we are currently globally limited. */
   globalBlock = false;
@@ -64,7 +64,7 @@ export class RequestHandler {
   globalTimeout?: Promise<void>;
 
   /** A map with bucket hash data. */
-  hashes = new Map<string, HashData>();
+  hashes: Map<string, HashData> = new Map<string, HashData>();
 
   /** Options for the RequestHandler. */
   options: RESTOptions;
@@ -92,7 +92,7 @@ export class RequestHandler {
    * Whether we are currently globally limited.
    * @readonly
    */
-  get limited() {
+  get limited(): boolean {
     return this.globalBlock && Date.now() < this.globalReset;
   }
 

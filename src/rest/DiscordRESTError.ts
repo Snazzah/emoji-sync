@@ -45,11 +45,11 @@ export class DiscordRESTError extends Error {
     }
   }
 
-  get name() {
+  get name(): string {
     return `${this.constructor.name} [${this.code}]`;
   }
 
-  private flattenErrors(errors: any, keyPrefix = '') {
+  private flattenErrors(errors: any, keyPrefix = ''): string[] {
     let messages: string[] = [];
     for (const fieldName in errors) {
       if (!(fieldName in errors) || fieldName === 'message' || fieldName === 'code') {

@@ -7,7 +7,7 @@ export class Mutex {
   /**
    * Whether the mutex instance is locked.
    */
-  get locked() {
+  get locked(): boolean {
     return this.#queue.length > 0;
   }
 
@@ -15,7 +15,7 @@ export class Mutex {
    * Returns a promise that will resolve as soon as the mutex is unlocked.
    * @arg next Whether to insert the promise at the start of the queue.
    */
-  acquire(next?: boolean) {
+  acquire(next?: boolean): Promise<unknown> {
     const isLocked = this.locked;
     const promise = new Promise((resolve) => {
       if (next) return this.#queue.unshift(resolve);

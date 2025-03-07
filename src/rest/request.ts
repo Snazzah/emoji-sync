@@ -77,7 +77,7 @@ export class Request {
    * The identifier of the request.
    * @readonly
    */
-  get id() {
+  get id(): string {
     return `${this.method}:${this.route}`;
   }
 

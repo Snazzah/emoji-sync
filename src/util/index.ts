@@ -8,7 +8,7 @@ import { readdir, lstat } from 'node:fs/promises';
  * @param recursive Whether to get files recursively
  * @returns The paths of the inside the folder
  */
-export async function getFiles(folderPath: string, recursive = false) {
+export async function getFiles(folderPath: string, recursive = false): Promise<string[]> {
   const fileList = await readdir(folderPath);
   const files: string[] = [];
   for (const file of fileList) {
@@ -24,7 +24,7 @@ export async function getFiles(folderPath: string, recursive = false) {
  * Calculates the timestamp in milliseconds associated with a Discord ID/snowflake
  * @param id The ID of a structure
  */
-export function getCreatedAt(id: string) {
+export function getCreatedAt(id: string): number {
   return getDiscordEpoch(id) + 1420070400000;
 }
 
@@ -32,7 +32,7 @@ export function getCreatedAt(id: string) {
  * Gets the number of milliseconds since epoch represented by an ID/snowflake
  * @param id The ID of a structure
  */
-export function getDiscordEpoch(id: string) {
+export function getDiscordEpoch(id: string): number {
   return Math.floor(Math.floor(Number(BigInt(id) / 4194304n)));
 }
 
@@ -41,7 +41,7 @@ export function getDiscordEpoch(id: string) {
  * @param emoji The emoji to convert to a markdown format
  * @returns The formatted markdown string
  */
-export function toMarkdown(emoji: Omit<PartialEmoji, 'animated'> & { animated?: boolean }) {
+export function toMarkdown(emoji: Omit<PartialEmoji, 'animated'> & { animated?: boolean }): string {
   return `<${emoji.animated ? 'a' : ''}:${emoji.name}:${emoji.id}>`;
 }
 
@@ -51,7 +51,7 @@ export function toMarkdown(emoji: Omit<PartialEmoji, 'animated'> & { animated?: 
  * @param mimeType The MIME type of the data
  * @returns The data URI string
  */
-export function toDataUri(data: Buffer | ArrayBuffer, mimeType: string) {
+export function toDataUri(data: Buffer | ArrayBuffer, mimeType: string): string {
   // @ts-ignore tsup is being annoying about this
   const base64 = ('Buffer' in globalThis && data instanceof Buffer ? data : Buffer.from(data)).toString('base64');
   return `data:${mimeType};base64,${base64}`;
