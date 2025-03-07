@@ -1,7 +1,7 @@
 import type { Request } from './rest/request';
 import type { FileContent } from './rest/requestHandler';
 
-export const VERSION = '0.1.0';
+export const VERSION = '0.1.1';
 export const API_VERSION = 10;
 export const API_BASE_URL = 'https://discord.com/api/v' + API_VERSION;
 export const CDN_URL = 'https://cdn.discordapp.com';
