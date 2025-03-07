@@ -115,12 +115,10 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@snazzah'
 
-      - name: Build Package
-        run: pnpm run build
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-        with:
-          node-version: 18.x
+
+      - name: Build Package
+        run: pnpm run build
 
       - run: npx jsr publish
