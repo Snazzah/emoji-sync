@@ -4,7 +4,7 @@
     "module": "node16",
     "strict": true,
     "esModuleInterop": true,
-    "removeComments": true,
+    "removeComments": false,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node16",
     "resolveJsonModule": true
