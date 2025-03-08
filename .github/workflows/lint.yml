@@ -7,6 +7,8 @@ on:
     paths:
       - "src/**"
       - ".eslint.config.*"
+      - "package.json"
+      - "pnpm-lock.yaml"
       - ".github/workflows/lint.yml"
   pull_request_target:
     branches:
