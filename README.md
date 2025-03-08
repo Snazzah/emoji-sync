@@ -10,7 +10,7 @@ A utility package to sync emojis with your Discord application
 pnpm i @snazzah/emoji-sync
 ```
 
-### Usage
+## Usage
 
 ```ts
 import { EmojiManager } from '@snazzah/emoji-sync';
