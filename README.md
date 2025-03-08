@@ -17,6 +17,9 @@ import { EmojiManager } from '@snazzah/emoji-sync';
 
 const manager = new EmojiManager({ token: '...' });
 
+// Note: you can add an emoji key type in the emoji manager so methods are typed properly
+// new EmojiManager<'success' | 'failure' | 'snazzah'>({ token: '...' })
+
 // Load emojis from a folder to sync with later
 await manager.loadFromFolder('./emojis', { recursive: true });
 
@@ -42,3 +45,10 @@ manager.get('success'); // { id: '123...', ... }
 // Get the formatted markdown of an emoji
 manager.getMarkdown('success'); // "<:success:123>"
 ```
+
+## Updating an emoji
+If you want to update an emoji, you should:
+- Rename the old emoji to something else: `_old_success`
+- Upload the new emoji under the same name
+- Reload old instances of your application so that all managers use the new ID
+- Remove the old emoji once other manager are up to date
