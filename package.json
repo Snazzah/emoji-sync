@@ -6,7 +6,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup src/index.ts --format esm,cjs --sourcemap --dts",
+    "build": "tsup src/index.ts --format esm,cjs --minify --dts",
     "format": "prettier . --write",
     "lint": "eslint .",
     "lint:sarif": "eslint . -f @microsoft/sarif -o eslint-results.sarif --quiet",
