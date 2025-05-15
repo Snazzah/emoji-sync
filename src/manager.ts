@@ -178,4 +178,12 @@ export class EmojiManager<Key extends string = string> extends EventEmitter<Emoj
       this.emojis.set(emoji.name as Key, emoji);
     }
   }
+
+  /**
+   * Load an array of emojis that were previously fetched from the Discord API into the manager.
+   * @param emojis The emojis from the Discord API to load
+   */
+  loadFromDiscord(emojis: Emoji[]) {
+    for (const emoji of emojis) this.emojis.set(emoji.name as Key, emoji);
+  }
 }
