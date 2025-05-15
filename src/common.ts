@@ -2,7 +2,7 @@ import type { Request } from './rest/request';
 import type { FileContent } from './rest/requestHandler';
 
 /** The version of this package. */
-export const VERSION = '0.1.1';
+export const VERSION = '0.1.2';
 /** The API version this package supports. */
 export const API_VERSION = 10;
 /** The base API URL to use in requests. */
